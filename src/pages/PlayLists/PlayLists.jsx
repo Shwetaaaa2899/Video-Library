@@ -21,7 +21,7 @@ PlayLists
   {playlist.length>0 &&
     playlist.map((item)=> <div  key = {item._id} className="card">
  
-   <div className="image"> <img src =  />
+   <div className="image"> <img src = "https://picsum.photos/300/174" />
   
    </div> 
    <div className="video-info-section">
