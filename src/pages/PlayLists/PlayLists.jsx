@@ -13,11 +13,11 @@ const openModal = () => {
 }
 const closeModal = () => setModal(false)
 useEffect(()=>{
-    const playList = localStorage.getItem("playlists")
+    const playLists  = localStorage.getItem("playlists")
     // console.log("ls",watchList)
-    if(playList){
-        dispatch({type:"SET-PLAYLIST",payload: JSON.parse(playList)}) 
-    }
+
+        dispatch({type:"SET-PLAYLIST",payload: JSON.parse(playLists)}) 
+    
 },[])
     return <div> 
     <div className="header" >
@@ -26,8 +26,8 @@ PlayLists
   </h3>
   </div>
   <div className = "main-wrapper">
-  {playlist.length>0 &&
-    playlist.map((item)=> <div  key = {item._id} className="card">
+  {playlist?.length>0 &&
+    playlist?.map((item)=> <div   className="card">
  
    <div className="image"> <img src = "https://picsum.photos/300/174" />
   
@@ -47,9 +47,10 @@ PlayLists
 
 <AiOutlinePlusCircle  onClick = {openModal}  size = {30}/>
 </div>
-{
+
+  </div>   
+  {
     modal &&  <AddPlayList  closeModal = {closeModal}/>
-}
-  </div>    
+} 
     </div>
 }

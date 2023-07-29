@@ -8,36 +8,32 @@ import { useEffect } from "react"
 export const PlayListContext = ({children}) =>{
 
    
-    const playListsReducer = (state, action) =>{
+    const PlayListsReducer = (state, action) =>{
 
         switch(action.type){
             case "SET-PLAYLIST":
-                console.log(action.payload)
-                return {...state,watchList:action.payload}
+                console.log("updated data on refresh ",action.payload)
+                return {...state,playlist:action.payload}
             case "ADD-TO-PLAYLIST":
+             
+              
+             let playLists =   [...state.playlist]
+             playLists  = [...playLists, action.payload]
 
-               console.log(action.payload)
-             let playLists = [...state.playlist]
-
-            //   }
-            //   if(video){
-            //     playLists =  [...playLists]?.filter((item) => item._id !== action.payload._id)
-            //   }  
-            //     else{
-
+         
+          
                 
                 
-                    playLists =    [...playLists,action.payload]
-                    console.log(playLists)
+               
                 // }
                 // console.log(watchLists)
                 localStorage.setItem(
                     "playlists",
-                    JSON.stringify([...playLists])
+                    JSON.stringify(playLists)
                   );
                
                 
-                return {...state, playlist:[...playLists]}
+                return {...state, playlist:playLists}
             case "REMOVE-FROM-WATCHLIST":
                 const removeItem = state.playLists.some((item) => item._id === action.payload._id)
                 const playListsUpdate = [...state.playList]
@@ -50,6 +46,8 @@ localStorage.setItem(
     JSON.stringify(playListsUpdate)
   );
 
+  
+ 
 
 return {...state, playlist:playListsUpdate}
              
@@ -57,7 +55,7 @@ return {...state, playlist:playListsUpdate}
                     return state;
                 }
             }
-    const [value,dispatch]  = useReducer(playListsReducer,initialState)
+    const [value,dispatch]  = useReducer(PlayListsReducer,initialState)
 
 
     
