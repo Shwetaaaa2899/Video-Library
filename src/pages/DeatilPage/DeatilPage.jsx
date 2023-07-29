@@ -1,8 +1,9 @@
 import {useParams} from "react-router-dom"
 import {videos} from "../../db/videos-db "
+import {useState} from "react"
 import {MdOutlineWatchLater, MdOutlineEditNote} from "react-icons/md"
 import {RiMenuAddLine} from "react-icons/ri";
-
+import {AddPlayList} from "../PlayLists/Modal"
 import "./Detail.css"
 export const DetailPage = () => {
     const {id} = useParams()
@@ -10,6 +11,9 @@ export const DetailPage = () => {
     const video = videos.find((item) => item._id === Number(id))
     // console.log(videos, id)
     const icon = 'https://picsum.photos/300/174'
+    const [addWatchModal,setAddWatchModal] = useState(false)
+    const openAddWatchModal = () => setAddWatchModal(true)
+    const closeModal = () => setAddWatchModal(false)
     return <div className="video-container">
         <div className="video-section">
             <div className="video">
@@ -28,7 +32,7 @@ export const DetailPage = () => {
                     </h3>
                 </div>
                 <div className="action-icons">
-                    <span><MdOutlineWatchLater/></span>
+                    <span onClick = {openAddWatchModal}><MdOutlineWatchLater/></span>
                     <span><RiMenuAddLine/></span>
                     <span><MdOutlineEditNote/></span>
                 </div>
@@ -37,7 +41,9 @@ export const DetailPage = () => {
             <hr/>
             <div className="myNotes">
                 <h4>My Notes</h4>
-
+                {
+            addWatchModal &&  < AddPlayList closeModal = {closeModal} />
+        }
             </div>
         </div>
         <div className="more-videos-section">
@@ -54,19 +60,22 @@ export const DetailPage = () => {
                 <div className="image">
                     <img src='https://picsum.photos/300/174'/>
                 </div>
-                <div className="section"></div>
+                <div className="section">
+                   {/* <h3>Kirigami Flower Bouquet - Beautiful Handmade Gift</h3>  */}
+                </div>
             </div>
 
 
             <div className="card">
-                <div className="image">
+                <div className="image"> 
                     <img src='https://picsum.photos/300/174'/>
                 </div>
                 <div className="section">
-                    uhiuhiu
+              
                 </div>
             </div>
         </div>
+   
 
     </div>
 }

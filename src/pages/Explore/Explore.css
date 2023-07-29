@@ -1,0 +1,18 @@
+.video-info-section{
+    text-decoration: none;
+    color:black
+}
+.input input{
+    width:100%;
+   /* border-radius: 5%; */
+   /* border-radius: 10px 0 0 0; */
+   border-radius: 10px 10px  10px 10px;
+   height:2rem;
+}
+
+.header{
+    /* background-color: antiquewhite; */
+    margin-bottom: 5%;
+
+
+}

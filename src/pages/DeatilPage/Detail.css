@@ -86,3 +86,7 @@
 
 .more-videos-section .card .image{
     align-self: flex-start;}
+
+    .action-icons:hover{
+        cursor: pointer;
+    }

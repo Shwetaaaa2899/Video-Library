@@ -2,7 +2,11 @@ import { categories } from "../../db/categories-db"
 import "./Category.css"
 import {Link} from "react-router-dom"
 export  const Category = () =>{
-    return <div className = "main-wrapper">
+    return  <div> 
+    <div className="header" >
+  <h3>Categories</h3>
+  </div>
+  <div className = "main-wrapper">
 
 
         
@@ -19,5 +23,6 @@ export  const Category = () =>{
         }
  
 
+    </div>
     </div>
 }

@@ -65,11 +65,7 @@ export  const Main = ({children}) =>{
         </div>
 
         <div className="right-sidebar">
-        <div className="header" >
-  <h3>
-{headingData}
-  </h3>
-</div>
+       
           <Outlet />
         </div>
         {/* {modal && <CreatePost showClose={showClose} showOpen={showOpen} />} */}
