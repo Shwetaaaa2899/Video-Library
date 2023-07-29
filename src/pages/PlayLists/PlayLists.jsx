@@ -2,6 +2,7 @@ import {AiOutlinePlusCircle} from "react-icons/ai"
 import {usePlayListsContextProvider} from "../../reducer/PlayListsContext"
 import { useState , createContext, useContext,useReducer } from "react"
 import {AddPlayList} from "./Modal"
+import { useEffect } from "react"
 export  const PlayLists = () =>{
     const { value :{playlist}, dispatch} = usePlayListsContextProvider()
 // console.log(value)
@@ -11,6 +12,13 @@ const openModal = () => {
     setModal(true)
 }
 const closeModal = () => setModal(false)
+useEffect(()=>{
+    const playList = localStorage.getItem("playlists")
+    // console.log("ls",watchList)
+    if(playList){
+        dispatch({type:"SET-PLAYLIST",payload: JSON.parse(playList)}) 
+    }
+},[])
     return <div> 
     <div className="header" >
   <h3>
@@ -25,14 +33,11 @@ PlayLists
   
    </div> 
    <div className="video-info-section">
-<div className="icon-image" >
-    <img src = {icon} />
-    </div>
+
     <div  className="info">
-    <h4>{item.title}</h4>
-    <h4>{item.category}</h4>
-    <small>{item.views} Views | {item.creator}</small>
-   </div>
+    <h2>{item.title}</h2>
+    <small>{item.description}</small>
+ </div>
    </div>
 
     </div>

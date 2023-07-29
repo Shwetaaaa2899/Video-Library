@@ -12,13 +12,12 @@ export const PlayListContext = ({children}) =>{
 
         switch(action.type){
             case "SET-PLAYLIST":
-                // console.log(action.payload)
+                console.log(action.payload)
                 return {...state,watchList:action.payload}
             case "ADD-TO-PLAYLIST":
-               console.log(action.payload)
-                const video = state.playlist.some((item) => item._id === action.payload._id)
 
-              let playLists = [...state.playlist]
+               console.log(action.payload)
+             let playLists = [...state.playlist]
 
             //   }
             //   if(video){
@@ -29,16 +28,16 @@ export const PlayListContext = ({children}) =>{
                 
                 
                     playLists =    [...playLists,action.payload]
-                    
+                    console.log(playLists)
                 // }
                 // console.log(watchLists)
                 localStorage.setItem(
                     "playlists",
-                    JSON.stringify(playLists)
+                    JSON.stringify([...playLists])
                   );
                
                 
-                return {...state, playlist:playLists}
+                return {...state, playlist:[...playLists]}
             case "REMOVE-FROM-WATCHLIST":
                 const removeItem = state.playLists.some((item) => item._id === action.payload._id)
                 const playListsUpdate = [...state.playList]
@@ -62,13 +61,7 @@ return {...state, playlist:playListsUpdate}
 
 
     
-        useEffect(()=>{
-            const playList = localStorage.getItem("playlists")
-            // console.log("ls",watchList)
-            if(playList){
-                dispatch({type:"SET-PLAYLIST",payload: JSON.parse(playList)}) 
-            }
-        },[])
+    
         const valuesToBePassed = {value,dispatch}
 
    
